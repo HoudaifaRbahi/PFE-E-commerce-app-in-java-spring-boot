@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fashop - eCommerce Website</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" th:href="@{/images/logo/Fashion_SHOP-removebg-preview.png}" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" th:href="@{/css/style-prefix.css}">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
+  <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
+  <link th:href="@{https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap}"
+    rel="stylesheet">
+  <link rel="stylesheet" th:href="@{./assets/bootstrap/css/bootstrap.css}">
+  <link th:href="@{https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css}" rel="stylesheet">
+
+</head>
+
+<body>
+<style>
+a{
+  text-decoration: none;
+  
+}
+.header-main .container .header-user-actions .log{
+  color: gray;
+  
+
+}
+
+
+
+</style>
+
+
+
+  <div class="overlay" data-overlay></div>
+
+
+
+
+
+
+  <!--
+    - MODAL
+  -->
+
+  <div class="modal" data-modal>
+    <div class="modal-close-overlay" data-modal-overlay></div>
+    <div class="modal-content">
+      <button class="modal-close-btn" data-modal-close>
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <!--
+    - NOTIFICATION TOAST
+  -->
+
+  <div class="notification-toast" data-toast>
+
+    <button class="toast-close-btn" data-toast-close>
+      <ion-icon name="close-outline"></ion-icon>
+    </button>
+
+    <div class="toast-banner">
+      <img th:src="@{/images/téléchargement-removebg-preview.png}" alt="Rose Gold Earrings" width="80" height="70">
+    </div>
+
+    <div class="toast-detail">
+
+      <p class="toast-message">
+        Someone in new just bought
+      </p>
+
+      <p class="toast-title">
+        Rose Gold Earrings
+      </p>
+
+      <p class="toast-meta">
+        <time datetime="PT2M">2 Minutes</time> ago
+      </p>
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <!--
+    - HEADER
+  -->
+
+  <header>
+
+    <div class="header-top">
+
+      <div class="container">
+
+        <ul class="header-social-container">
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+        </ul>
+
+        <div class="header-alert-news">
+          <p>
+            <b>Free Shipping</b>
+            This Week Order Over - $55
+          </p>
+        </div>
+
+        <div class="header-top-actions">
+
+          <select name="currency">
+
+            <option value="usd">USD &dollar;</option>
+            <option value="eur">EUR &euro;</option>
+
+          </select>
+
+          <select name="language">
+
+            <option value="en-US">English</option>
+            <option value="es-ES">Espa&ntilde;ol</option>
+            <option value="fr">Fran&ccedil;ais</option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="header-main">
+
+      <div class="container">
+
+        <a href="#" class="header-logo">
+          <img th:src="@{/photo/logo/logo-removebg-preview.png}" width="110" height="110">
+        </a>
+        <span id="logo-web" >SHOPELECTRO</span>
+        <div class="header-search-container">
+
+          <input type="search" name="search" class="search-field" placeholder="Enter your product name...">
+
+          <button class="search-btn">
+            <ion-icon name="search-outline"></ion-icon>
+          </button>
+
+        </div>
+
+
+
+
+        <div class="header-user-actions">
+
+          <button class="action-btn icon-login">
+            <ion-icon name="person-outline"></ion-icon>
+
+
+
+
+            <ul class=" fs-4 shadow p-3 mb-5 bg-body rounded">
+              <li class="hstack gap-3 fs-4 log">
+                <div><a th:href="@{/login}">Sign in</a></div>
+                <div class="vr"></div>
+                <div><a th:href="@{/register}">Sign up</a></div>
+              </li>
+              <div class="info-customer">
+                <li><a th:href="@{/profile}"><i class="ri-user-line"></i> My Account</a>
+                <li><a th:href="@{/orders}"><i class="ri-inbox-archive-line"></i> My Orders</a></li>
+                <li><a th:href="@{contact.html}"><i class="ri-message-2-line"></i> Contact Admin</a></li>
+                <li><a th:href="@{/invoices}"><i class="ri-message-2-line"></i> My invoices</a></li>
+              </div>
+            </ul>
+          </button>
+
+
+
+          <button class="action-btn">
+            <a href="#"><ion-icon name="heart-outline"></ion-icon>
+              <span class="count">0</span></a>
+          </button>
+
+          <button class="action-btn">
+            <a th:href="@{/cart}"><ion-icon name="bag-handle-outline"></ion-icon>
+              <span class="count" th:text="${session.totalItems == null} ? '0' : ${session.totalItems}"></span></a>
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+     <!-- desktop-navigation-menu categoty   -->
+    <nav class="desktop-navigation-menu">
+
+      <div class="container">
+
+        <ul class="desktop-menu-category-list">
+
+          <li class="menu-category">
+            <a href="#" class="menu-title">Home</a>
+          </li>
+
+         
+          <li class="menu-category">
+            <a href="#" class="menu-title">Categories</a>
+
+            <div class="dropdown-panel">
+                 <!--
+                   - furst col in categories
+                  -->
+
+              <ul class="dropdown-panel-list">
+
+                <li class="menu-title">
+                  <a href="#">Dresses</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a th:href="@{product_category.html}">White dresses</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Slip dresses</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Jumper dresses</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Volvet dresses</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Workwear dresses</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">
+                    <img th:src="@{/images/categories-1.jpg}" alt="categories-1" width="250"
+                         height="119">
+                  </a>
+                </li>
+
+              </ul>
+                <!--
+                  - second col in categories
+                 -->
+              <ul class="dropdown-panel-list">
+
+                <li class="menu-title">
+                  <a href="#">Shoes</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Boots</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Heels</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Sandals</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Flat shoes</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Loafers</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">
+                    <img th:src="@{/images/categories-2.jpg}" alt="categories-2" width="250" height="119">
+                  </a>
+                </li>
+
+              </ul>
+                <!--
+                  - 3rd col in categories
+                 -->
+              <ul class="dropdown-panel-list">
+
+                <li class="menu-title">
+                  <a href="#">Sportswear</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Ski & Snowboard</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Gym & Training</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Outdoors</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Runing</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Yoga & Studio</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">
+                    <img th:src="@{/images/categories-3.jpg}" alt="categories-3" width="250" height="119">
+                  </a>
+                </li>
+
+              </ul>
+              <!--
+                - 4rd col in categories
+              -->
+              <ul class="dropdown-panel-list">
+
+                <li class="menu-title">
+                  <a href="#">Jeans</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Black jeans</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Blue jeans</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Grey jeans</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">White jeans</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">FASHOP DESIGN</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">
+                    <img th:src="@{/images/categories-4.jpg}" alt="categories-4" width="250" height="119">
+                  </a>
+                </li>
+
+              </ul>
+
+            </div>
+          </li>
+
+          <li class="menu-category">
+            <a href="#" class="menu-title">Jewelry</a>
+
+            <ul class="dropdown-list">
+
+              <li class="dropdown-item">
+                <a href="#">Earrings</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#">Couple Rings</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#">Necklace</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#">Bracelets</a>
+              </li>
+              <li class="dropdown-item panel-list-item">
+                <a href="#">
+                  <img th:src="@{/images/categories-5.jpg}" alt="categories-5" width="100" height="70" >
+                </a>
+              </li>
+
+            </ul>
+            
+          </li>
+
+          <li class="menu-category">
+            <a href="#" class="menu-title">Perfume</a>
+
+            <ul class="dropdown-list">
+
+              <li class="dropdown-item">
+                <a href="#">Clothes Perfume</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#">Deodorant</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#">Flower Fragrance</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#">Air Freshener</a>
+              </li>
+              <li class="dropdown-item panel-list-item">
+                <a href="#">
+                  <img th:src="@{/images/categories-6.jpg}" alt="categories-6" width="150" height="70" >
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
+          <li class="menu-category">
+            <a href="#" class="menu-title">Hot Offers</a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </nav>
+
+
+
+
+    <!--    mode mobile caregory   -->
+
+    <div class="mobile-bottom-navigation">
+      <!--    bar's mode mobile    -->
+      <button class="action-btn" data-mobile-menu-open-btn>
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
+
+      <button class="action-btn">
+        <ion-icon name="bag-handle-outline"></ion-icon>
+        <span class="count">0</span>
+      </button>
+
+      <button class="action-btn">
+        <ion-icon name="home-outline"></ion-icon>
+      </button>
+
+      <button class="action-btn">
+        <ion-icon name="heart-outline"></ion-icon>
+
+        <span class="count">0</span>
+      </button>
+
+      <button class="action-btn" data-mobile-menu-open-btn>
+        <ion-icon name="grid-outline"></ion-icon>
+      </button>
+
+    </div>
+
+    <!--    in menu icon mobile    -->
+    <nav class="mobile-navigation-menu  has-scrollbar" data-mobile-menu>
+      <!--    menu (mobile)    -->
+      <div class="menu-top">
+        <h2 class="menu-title">Menu</h2>
+
+        <button class="menu-close-btn" data-mobile-menu-close-btn>
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+      </div>
+
+      
+      <ul class="mobile-menu-category-list">
+        <!--    home (mobile)    -->
+        <li class="menu-category">
+          <a href="#" class="menu-title">Home</a>
+        </li>
+
+        <!--    Dresses (mobile)    -->
+        <li class="menu-category">
+
+          <button class="accordion-menu" data-accordion-btn>
+            <p class="menu-title">Dresses</p>
+
+            <div>
+              <ion-icon name="add-outline" class="add-icon"></ion-icon>
+              <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+            </div>
+          </button>
+
+          <ul class="submenu-category-list" data-accordion>
+
+            <li class="submenu-category">
+              <a th:href="@{product_category.html}" class="submenu-title">White dresses</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Slip dresses</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Jumper dresses</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Volvet dresses</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Workwear dresses</a>
+            </li>
+
+          </ul>
+
+        </li>
+
+        <!--     shoes(mobile)    -->
+        <li class="menu-category">
+
+          <button class="accordion-menu" data-accordion-btn>
+            <p class="menu-title">Shoes</p>
+
+            <div>
+              <ion-icon name="add-outline" class="add-icon"></ion-icon>
+              <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+            </div>
+          </button>
+
+          <ul class="submenu-category-list" data-accordion>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Boots</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Heels</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Sandals</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Flat Shoes</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Loafers</a>
+            </li>
+
+          </ul>
+
+        </li>
+
+        <!--     Sportswear(mobile)    -->
+        <li class="menu-category">
+
+          <button class="accordion-menu" data-accordion-btn>
+            <p class="menu-title">Sportswear</p>
+
+            <div>
+              <ion-icon name="add-outline" class="add-icon"></ion-icon>
+              <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+            </div>
+          </button>
+
+          <ul class="submenu-category-list" data-accordion>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Ski & Snowboard</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">agaym & Training</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Outdoors</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Runing</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Yoga & Studio</a>
+            </li>
+
+          </ul>
+
+        </li>
+
+        <!--     Jewelry(mobile)    -->
+        <li class="menu-category">
+
+          <button class="accordion-menu" data-accordion-btn>
+            <p class="menu-title">Jewelry</p>
+
+            <div>
+              <ion-icon name="add-outline" class="add-icon"></ion-icon>
+              <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+            </div>
+          </button>
+
+          <ul class="submenu-category-list" data-accordion>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Earrings</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Couple Rings</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Necklace</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Bracelets</a>
+            </li>
+
+          </ul>
+
+        </li>
+
+        <!--     perfume(mobile)    -->
+        <li class="menu-category">
+
+          <button class="accordion-menu" data-accordion-btn>
+            <p class="menu-title">Perfume</p>
+
+            <div>
+              <ion-icon name="add-outline" class="add-icon"></ion-icon>
+              <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+            </div>
+          </button>
+
+          <ul class="submenu-category-list" data-accordion>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Clothes Perfume</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Deodorant</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Flower Fragrance</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Air Freshener</a>
+            </li>
+
+          </ul>
+
+        </li>
+
+        <li class="menu-category">
+          <a href="#" class="menu-title">Hot Offers</a>
+        </li>
+
+      </ul>
+
+      <!--     languages(mobile)    -->
+      <div class="menu-bottom">
+
+        <ul class="menu-category-list">
+
+          <li class="menu-category">
+
+            <button class="accordion-menu" data-accordion-btn>
+              <p class="menu-title">Language</p>
+
+              <ion-icon name="caret-back-outline" class="caret-back"></ion-icon>
+            </button>
+
+            <ul class="submenu-category-list" data-accordion>
+
+              <li class="submenu-category">
+                <a href="#" class="submenu-title">English</a>
+              </li>
+
+              <li class="submenu-category">
+                <a href="#" class="submenu-title">Espa&ntilde;ol</a>
+              </li>
+
+              <li class="submenu-category">
+                <a href="#" class="submenu-title">Fren&ccedil;h</a>
+              </li>
+
+            </ul>
+
+          </li>
+
+          <!--     currenct=payment(mobile)    -->
+          <li class="menu-category">
+            <button class="accordion-menu" data-accordion-btn>
+              <p class="menu-title">Currency</p>
+              <ion-icon name="caret-back-outline" class="caret-back"></ion-icon>
+            </button>
+
+            <ul class="submenu-category-list" data-accordion>
+              <li class="submenu-category">
+                <a href="#" class="submenu-title">USD &dollar;</a>
+              </li>
+
+              <li class="submenu-category">
+                <a href="#" class="submenu-title">EUR &euro;</a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+
+        <!--     menu social media(mobile)    -->
+        <ul class="menu-social-container">
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+
+
+
+
+  <!--
+    - MAIN
+  -->
+
+  <main>
+
+    <!--
+      - BANNER
+    -->
+
+ 
+
+    <!--
+      - PRODUCT
+    -->
+
+    <div class="product-container">
+
+      <div class="container">
+
+
+        <!--
+          - SIDEBAR
+        -->
+
+        <div class="" data-mobile-menu>
+          <div class="">
+            <div class="">
+              <button class="" data-mobile-menu-close-btn>
+              </button>
+            </div>
+         </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="card justify-content-center shadow container" style="width: 700px; margin-bottom: 40px;">
+        <div class="card-body mx-4" th:each="invoice:${invoices}">
+          <div class="container">
+            <p class="my-5 mx-5 text-center" style="font-size: 30px; color: hsl(166, 30%, 63%);">Thank for your purchase</p><br>
+            <div class="row">
+              <ul class="list-unstyled">
+                <li class="text-muted mt-1" ><span class="text-black">Invoice Number</span></li>
+              </ul>
+              <ul class="list-unstyled">
+                <li class="text-muted mt-1" ><span class="text-black" th:text="${invoice.id}"></span></li>
+              </ul>
+              <ul class="list-unstyled">
+                <li class="text-muted mt-1" ><span class="text-black">Customer Name</span></li>
+              </ul>
+              <ul class="list-unstyled">
+                <li class="text-muted mt-1" th:text="${invoice.customer.firstName+' '+invoice.customer.lastName}"><span class="text-black">Invoice</span></li>
+              </ul>
+              <hr>
+              <ul class="list-unstyled">
+                <li class="text-muted mt-1" ><span class="text-black">Product and quantities</span></li>
+              </ul>
+              <div class="col-lg-10" th:each="invoiceDetail:${invoice.orderDetailList}">
+                <p class="text-muted" th:text="${invoiceDetail.product.name+' : '+invoiceDetail.Quantity}"></p>
+              </div>
+              <hr>
+            </div>
+            <div class="row">
+              <div class="col-lg-10">
+                <p class="text-muted">Delivery Date</p>
+              </div>
+              <div class="col-lg-2 ">
+                <p class="float-end" th:text="${invoice.deliveryDate}">
+                </p>
+              </div>
+              <hr>
+            </div>
+            <div class="row">
+              <div class="col-lg-10">
+                <p class="text-muted">Total</p>
+              </div>
+              <div class="col-lg-2">
+                <p class="float-end"  th:text="${invoice.totalPrice +' MAD'}">
+                </p>
+              </div>
+              <hr style="border: 2px solid black;">
+            </div>
+            <div class="text-center" style="margin-top: 90px;">
+              <a><u class="text-info">View in browser</u></a>
+              <p class="text-muted">Welcome , Our FS Cafeteria Customer. </p>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+
+
+
+  
+
+  </main>
+
+
+
+
+
+  <!--
+    - FOOTER
+  -->
+
+  <footer>
+
+    <div class="footer-category">
+
+      <div class="container">
+
+        <h2 class="footer-category-title">Brand directory</h2>
+
+        <div class="footer-category-box">
+
+          <h3 class="category-box-title">Fashion :</h3>
+
+          <a href="#" class="footer-category-link">T-shirt</a>
+          <a href="#" class="footer-category-link">Shirts</a>
+          <a href="#" class="footer-category-link">shorts & jeans</a>
+          <a href="#" class="footer-category-link">jacket</a>
+          <a href="#" class="footer-category-link">dress & frock</a>
+          <a href="#" class="footer-category-link">innerwear</a>
+          <a href="#" class="footer-category-link">hosiery</a>
+
+        </div>
+
+        <div class="footer-category-box">
+          <h3 class="category-box-title">footwear :</h3>
+        
+          <a href="#" class="footer-category-link">sport</a>
+          <a href="#" class="footer-category-link">formal</a>
+          <a href="#" class="footer-category-link">Boots</a>
+          <a href="#" class="footer-category-link">casual</a>
+          <a href="#" class="footer-category-link">cowboy shoes</a>
+          <a href="#" class="footer-category-link">safety shoes</a>
+          <a href="#" class="footer-category-link">Party wear shoes</a>
+          <a href="#" class="footer-category-link">Branded</a>
+          <a href="#" class="footer-category-link">Firstcopy</a>
+          <a href="#" class="footer-category-link">Long shoes</a>
+        </div>
+
+        <div class="footer-category-box">
+          <h3 class="category-box-title">jewellery :</h3>
+        
+          <a href="#" class="footer-category-link">Necklace</a>
+          <a href="#" class="footer-category-link">Earrings</a>
+          <a href="#" class="footer-category-link">Couple rings</a>
+          <a href="#" class="footer-category-link">Pendants</a>
+          <a href="#" class="footer-category-link">Crystal</a>
+          <a href="#" class="footer-category-link">Bangles</a>
+          <a href="#" class="footer-category-link">bracelets</a>
+          <a href="#" class="footer-category-link">nosepin</a>
+          <a href="#" class="footer-category-link">chain</a>
+          <a href="#" class="footer-category-link">Earrings</a>
+          <a href="#" class="footer-category-link">Couple rings</a>
+        </div>
+
+        <div class="footer-category-box">
+          <h3 class="category-box-title">cosmetics :</h3>
+        
+          <a href="#" class="footer-category-link">Shampoo</a>
+          <a href="#" class="footer-category-link">Bodywash</a>
+          <a href="#" class="footer-category-link">Facewash</a>
+          <a href="#" class="footer-category-link">makeup kit</a>
+          <a href="#" class="footer-category-link">liner</a>
+          <a href="#" class="footer-category-link">lipstick</a>
+          <a href="#" class="footer-category-link">prefume</a>
+          <a href="#" class="footer-category-link">Body soap</a>
+          <a href="#" class="footer-category-link">scrub</a>
+          <a href="#" class="footer-category-link">hair gel</a>
+          <a href="#" class="footer-category-link">hair colors</a>
+          <a href="#" class="footer-category-link">hair dye</a>
+          <a href="#" class="footer-category-link">sunscreen</a>
+          <a href="#" class="footer-category-link">skin loson</a>
+          <a href="#" class="footer-category-link">liner</a>
+          <a href="#" class="footer-category-link">lipstick</a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer-nav">
+
+      <div class="container">
+
+        <ul class="footer-nav-list">
+
+          <li class="footer-nav-item">
+            <h2 class="nav-title">Popular Categories</h2>
+          </li>
+
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Dresses</a>
+          </li>
+
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Sheos</a>
+          </li>
+
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Sportswear</a>
+          </li>
+
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Jeans</a>
+          </li>
+
+        </ul>
+
+        <ul class="footer-nav-list">
+        
+          <li class="footer-nav-item">
+            <h2 class="nav-title">Products</h2>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Prices drop</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">New products</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Best sales</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Contact us</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Sitemap</a>
+          </li>
+        
+        </ul>
+
+        <ul class="footer-nav-list">
+        
+          <li class="footer-nav-item">
+            <h2 class="nav-title">Our Company</h2>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Delivery</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Legal Notice</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Terms and conditions</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">About us</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Secure payment</a>
+          </li>
+        
+        </ul>
+
+        <ul class="footer-nav-list">
+        
+          <li class="footer-nav-item">
+            <h2 class="nav-title">Services</h2>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Prices drop</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">New products</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Best sales</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Contact us</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Sitemap</a>
+          </li>
+        
+        </ul>
+
+        <ul class="footer-nav-list">
+
+          <li class="footer-nav-item">
+            <h2 class="nav-title">Contact</h2>
+          </li>
+
+          <li class="footer-nav-item flex">
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <address class="content">
+              419 el-madina, tetouan, 92000, MOROCCO
+            </address>
+          </li>
+
+          <li class="footer-nav-item flex">
+            <div class="icon-box">
+              <ion-icon name="call-outline"></ion-icon>
+            </div>
+
+            <a th:href="@{tel:+607936-8058}" class="footer-nav-link">+2126 66 00 11 55</a>
+          </li>
+
+          <li class="footer-nav-item flex">
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+
+            <a th:href="@{mailto:example@gmail.com}" class="footer-nav-link">Fashop@gmail.com</a>
+          </li>
+
+        </ul>
+
+        <ul class="footer-nav-list">
+
+          <li class="footer-nav-item">
+            <h2 class="nav-title">Follow Us</h2>
+          </li>
+
+          <li>
+            <ul class="social-link">
+
+              <li class="footer-nav-item">
+                <a href="#" class="footer-nav-link">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+              </li>
+
+              <li class="footer-nav-item">
+                <a href="#" class="footer-nav-link">
+                  <ion-icon name="logo-twitter"></ion-icon>
+                </a>
+              </li>
+
+              <li class="footer-nav-item">
+                <a href="#" class="footer-nav-link">
+                  <ion-icon name="logo-linkedin"></ion-icon>
+                </a>
+              </li>
+
+              <li class="footer-nav-item">
+                <a href="#" class="footer-nav-link">
+                  <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+      <div class="container">
+
+        <img th:src="@{/images/payment.png}" alt="payment method" class="payment-img">
+
+        <p class="copyright">
+          Copyright &copy; <a href="#">Fashop</a> all rights reserved.
+        </p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <!--
+    - custom js link
+  -->
+  <script th:src="@{/js/script.js}"></script>
+
+  <!--
+    - ionicon link
+  -->
+  <script type="module" th:src="@{https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js}"></script>
+  <script nomodule th:src="@{https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js}"></script>
+  <script th:src="@{/bootstrap/js/bootstrap.js}"></script>
+
+</body>
+
+</html>

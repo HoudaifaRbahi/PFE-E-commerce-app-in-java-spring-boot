@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fashop - eCommerce Website</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" th:href="@{/images/logo/Fashion_SHOP-removebg-preview.png}" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link  th:href="@{/css/style-prefix.css}" rel="stylesheet">
+
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
+  <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
+  <link th:href="@{https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap}"
+        rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}">
+  <link th:href="@{https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css}" rel="stylesheet">
+
+</head>
+
+<body>
+<style>
+a{
+  text-decoration: none;
+
+}
+.header-main .container .header-user-actions .log{
+  color: gray;
+
+
+}
+
+
+
+</style>
+
+
+
+<div class="overlay" data-overlay></div>
+
+
+
+
+
+
+
+
+
+
+
+<!--
+  - MODAL
+-->
+
+<div class="modal" data-modal>
+
+  <div class="modal-close-overlay" data-modal-overlay></div>
+
+  <div class="modal-content">
+
+    <button class="modal-close-btn" data-modal-close>
+
+    </button>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--
+  - NOTIFICATION TOAST
+-->
+
+<div class="notification-toast" data-toast>
+
+  <button class="toast-close-btn" data-toast-close>
+    <ion-icon name="close-outline"></ion-icon>
+  </button>
+
+  <div class="toast-banner">
+    <img th:src="@{/images/téléchargement-removebg-preview.png}" alt="Rose Gold Earrings" width="80" height="70">
+  </div>
+
+  <div class="toast-detail">
+
+    <p class="toast-message">
+      Someone in new just bought
+    </p>
+
+    <p class="toast-title">
+      Rose Gold Earrings
+    </p>
+
+    <p class="toast-meta">
+      <time datetime="PT2M">2 Minutes</time> ago
+    </p>
+
+  </div>
+
+</div>
+
+
+
+
+
+<!--
+  - HEADER
+-->
+
+<header>
+
+  <div class="header-top">
+
+    <div class="container">
+
+      <ul class="header-social-container">
+
+        <li>
+          <a href="#" class="social-link">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </a>
+        </li>
+
+        <li>
+          <a href="#" class="social-link">
+            <ion-icon name="logo-twitter"></ion-icon>
+          </a>
+        </li>
+
+        <li>
+          <a href="#" class="social-link">
+            <ion-icon name="logo-instagram"></ion-icon>
+          </a>
+        </li>
+      </ul>
+
+      <div class="header-alert-news">
+        <p>
+          <b>Free Shipping</b>
+          This Week Order Over - $55
+        </p>
+      </div>
+
+      <div class="header-top-actions">
+
+        <select name="currency">
+
+          <option value="usd">USD &dollar;</option>
+          <option value="eur">EUR &euro;</option>
+
+        </select>
+
+        <select name="language">
+
+          <option value="en-US">English</option>
+          <option value="es-ES">Espa&ntilde;ol</option>
+          <option value="fr">Fran&ccedil;ais</option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="header-main">
+
+    <div class="container">
+
+      <a href="#" class="header-logo">
+        <img th:src="@{/photo/logo/logo-removebg-preview.png}" width="110" height="110">
+      </a>
+      <span id="logo-web" >SHOPELECTRO</span>
+      <div class="header-search-container">
+
+        <input type="search" name="search" class="search-field" placeholder="Enter your product name...">
+
+        <button class="search-btn">
+          <ion-icon name="search-outline"></ion-icon>
+        </button>
+
+      </div>
+
+
+
+
+      <div class="header-user-actions">
+
+        <button class="action-btn icon-login">
+          <ion-icon name="person-outline"></ion-icon>
+
+
+
+
+          <ul class=" fs-4 shadow p-3 mb-5 bg-body rounded">
+            <li class="hstack gap-3 fs-4 log">
+              <div><a th:href="@{/login}">Sign in</a></div>
+              <div class="vr"></div>
+              <div><a th:href="@{/register}">Sign up</a></div>
+            </li>
+            <div class="info-customer">
+              <li><a th:href="@{/profile}"><i class="ri-user-line"></i> My Account</a>
+              <li><a th:href="@{/orders}"><i class="ri-inbox-archive-line"></i> My Orders</a></li>
+              <li><a th:href="@{contact.html}"><i class="ri-message-2-line"></i> Contact Admin</a></li>
+              <li><a th:href="@{/invoices}"><i class="ri-message-2-line"></i> My invoices</a></li>
+            </div>
+          </ul>
+        </button>
+
+
+
+        <button class="action-btn">
+          <a href="#"><ion-icon name="heart-outline"></ion-icon>
+            <span class="count">0</span></a>
+        </button>
+
+        <button class="action-btn">
+          <a th:href="@{/cart}"><ion-icon name="bag-handle-outline"></ion-icon>
+            <span class="count" th:text="${session.totalItems == null} ? '0' : ${session.totalItems}"></span></a>
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- desktop-navigation-menu categoty   -->
+  <nav class="desktop-navigation-menu">
+
+    <div class="container">
+
+      <ul class="desktop-menu-category-list">
+
+        <li class="menu-category">
+          <a href="#" class="menu-title">Home</a>
+        </li>
+
+
+        <li class="menu-category">
+          <a href="#" class="menu-title">Categories</a>
+
+          <div class="dropdown-panel">
+            <!--
+              - furst col in categories
+             -->
+
+            <ul class="dropdown-panel-list">
+
+              <li class="menu-title">
+                <a href="#">Dresses</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a th:href="@{product_category.html}">White dresses</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">Slip dresses</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">Jumper dresses</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">Volvet dresses</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">Workwear dresses</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">
+                  <img th:src="@{/images/categories-1.jpg}" alt="categories-1" width="250"
+                       height="119">
+                </a>
+              </li>
+
+            </ul>
+            <!--
+              - second col in categories
+             -->
+            <ul class="dropdown-panel-list">
+
+              <li class="menu-title">
+                <a href="#">Shoes</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">Boots</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">Heels</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">Sandals</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">Flat shoes</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">Loafers</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">
+                  <img th:src="@{/images/categories-2.jpg}" alt="categories-2" width="250" height="119">
+                </a>
+              </li>
+
+            </ul>
+            <!--
+              - 3rd col in categories
+             -->
+            <ul class="dropdown-panel-list">
+
+              <li class="menu-title">
+                <a href="#">Sportswear</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">Ski & Snowboard</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">Gym & Training</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">Outdoors</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">Runing</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">Yoga & Studio</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">
+                  <img th:src="@{/images/categories-3.jpg}" alt="categories-3" width="250" height="119">
+                </a>
+              </li>
+
+            </ul>
+            <!--
+              - 4rd col in categories
+            -->
+            <ul class="dropdown-panel-list">
+
+              <li class="menu-title">
+                <a href="#">Jeans</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">Black jeans</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">Blue jeans</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">Grey jeans</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">White jeans</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">FASHOP DESIGN</a>
+              </li>
+
+              <li class="panel-list-item">
+                <a href="#">
+                  <img th:src="@{/images/categories-4.jpg}" alt="categories-4" width="250" height="119">
+                </a>
+              </li>
+
+            </ul>
+
+          </div>
+        </li>
+
+        <li class="menu-category">
+          <a href="#" class="menu-title">Jewelry</a>
+
+          <ul class="dropdown-list">
+
+            <li class="dropdown-item">
+              <a href="#">Earrings</a>
+            </li>
+
+            <li class="dropdown-item">
+              <a href="#">Couple Rings</a>
+            </li>
+
+            <li class="dropdown-item">
+              <a href="#">Necklace</a>
+            </li>
+
+            <li class="dropdown-item">
+              <a href="#">Bracelets</a>
+            </li>
+            <li class="dropdown-item panel-list-item">
+              <a href="#">
+                <img th:src="@{/images/categories-5.jpg}" alt="categories-5" width="100" height="70" >
+              </a>
+            </li>
+
+          </ul>
+
+        </li>
+
+        <li class="menu-category">
+          <a href="#" class="menu-title">Perfume</a>
+
+          <ul class="dropdown-list">
+
+            <li class="dropdown-item">
+              <a href="#">Clothes Perfume</a>
+            </li>
+
+            <li class="dropdown-item">
+              <a href="#">Deodorant</a>
+            </li>
+
+            <li class="dropdown-item">
+              <a href="#">Flower Fragrance</a>
+            </li>
+
+            <li class="dropdown-item">
+              <a href="#">Air Freshener</a>
+            </li>
+            <li class="dropdown-item panel-list-item">
+              <a href="#">
+                <img th:src="@{/images/categories-6.jpg}" alt="categories-6" width="150" height="70" >
+              </a>
+            </li>
+
+          </ul>
+        </li>
+
+        <li class="menu-category">
+          <a href="#" class="menu-title">Hot Offers</a>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </nav>
+
+
+
+
+  <!--    mode mobile caregory   -->
+
+  <div class="mobile-bottom-navigation">
+    <!--    bar's mode mobile    -->
+    <button class="action-btn" data-mobile-menu-open-btn>
+      <ion-icon name="menu-outline"></ion-icon>
+    </button>
+
+    <button class="action-btn">
+      <a th:href="@{/cart}"><ion-icon name="bag-handle-outline"></ion-icon>
+        <span class="count" th:text="${session.totalItems == null} ? '0' : ${session.totalItems}"></span></a>
+    </button>
+
+    <button class="action-btn">
+      <ion-icon name="home-outline"></ion-icon>
+    </button>
+
+    <button class="action-btn">
+      <ion-icon name="heart-outline"></ion-icon>
+
+      <span class="count">0</span>
+    </button>
+
+    <button class="action-btn" data-mobile-menu-open-btn>
+      <ion-icon name="grid-outline"></ion-icon>
+    </button>
+
+  </div>
+
+  <!--    in menu icon mobile    -->
+  <nav class="mobile-navigation-menu  has-scrollbar" data-mobile-menu>
+    <!--    menu (mobile)    -->
+    <div class="menu-top">
+      <h2 class="menu-title">Menu</h2>
+
+      <button class="menu-close-btn" data-mobile-menu-close-btn>
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+    </div>
+
+
+    <ul class="mobile-menu-category-list" th:each="category:${categories}">
+
+
+
+      <!--    Dresses (mobile)    -->
+      <li class="menu-category">
+
+        <button class="accordion-menu" data-accordion-btn>
+          <a  th:href="@{/find-products/{id}(id=${category.id})}" ><p class="menu-title" th:text="${category.name}"></p></a>
+        </button>
+
+
+      </li>
+
+      <!--     shoes(mobile)    -->
+
+
+    </ul>
+
+    <!--     languages(mobile)    -->
+    <div class="menu-bottom">
+
+      <ul class="menu-category-list">
+
+        <li class="menu-category">
+
+          <button class="accordion-menu" data-accordion-btn>
+            <p class="menu-title">Language</p>
+
+            <ion-icon name="caret-back-outline" class="caret-back"></ion-icon>
+          </button>
+
+          <ul class="submenu-category-list" data-accordion>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">English</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Espa&ntilde;ol</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Fren&ccedil;h</a>
+            </li>
+
+          </ul>
+
+        </li>
+
+        <!--     currenct=payment(mobile)    -->
+        <li class="menu-category">
+          <button class="accordion-menu" data-accordion-btn>
+            <p class="menu-title">Currency</p>
+            <ion-icon name="caret-back-outline" class="caret-back"></ion-icon>
+          </button>
+
+          <ul class="submenu-category-list" data-accordion>
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">USD &dollar;</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">EUR &euro;</a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+
+      <!--     menu social media(mobile)    -->
+      <ul class="menu-social-container">
+
+        <li>
+          <a href="#" class="social-link">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </a>
+        </li>
+
+        <li>
+          <a href="#" class="social-link">
+            <ion-icon name="logo-twitter"></ion-icon>
+          </a>
+        </li>
+
+        <li>
+          <a href="#" class="social-link">
+            <ion-icon name="logo-instagram"></ion-icon>
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </nav>
+
+</header>
+
+
+
+
+
+<!--
+  - MAIN
+-->
+
+<main>
+
+  <!--
+    - BANNER
+  -->
+
+
+
+  <!--
+    - PRODUCT
+  -->
+
+  <div class="product-container">
+
+    <div class="container justify-content-center">
+
+
+      <!--
+        - SIDEBAR
+      -->
+
+      <div class="" data-mobile-menu>
+        <div class="">
+          <div class="">
+            <button class="" data-mobile-menu-close-btn>
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+      <!-- - PRODUCT MINIMAL   -->
+      <div class="product-box">
+
+
+        <!--
+          - PRODUCT GRID
+        -->
+
+        <div class="product-main">
+
+
+
+          <section class="h-100">
+            <div class="container h-100 py-4">
+              <div class="row d-flex justify-content-center align-items-center h-100 w-100">
+                <h2 class="title" th:text="${productDetail.category.name}"></h2>
+                <div class="col-12 item">
+
+                  <section class="img" >
+                    <img th:src="@{'data:image/jpeg;base64,' + ${productDetail.image}}" style=" width: 450px; height: 500px;" alt="" class="img-main"/>
+                    <div class="img-btns">
+                    </div>
+                  </section>
+
+                  <section class="price">
+                    <h2 class="price-sub__heading"  style="font-size: 20px;" th:text="${productDetail.category.name}"></h2>
+                    <h1 class="price-main__heading" style="font-size: 50px;" th:text="${productDetail.name}">Fall Limited Edition Sneakers</h1>
+                    <p class="price-txt"  style="font-size: 15px; width:400px; color:rgb(146, 146, 146);" th:text="${productDetail.description}">
+                    </p>
+                    <div class="price-box">
+                      <div class="price-box__main">
+                        <span class="price-box__main-new" style="font-size: 30px; color:rgb(146, 146, 146);" th:text="${productDetail.costPrice}+' MAD'"></span>
+                      </div>
+                    </div>
+                    <form th:action="@{/add-to-cart}" method="post" >
+                    <div class="price-btnbox" >
+                      <input type="hidden" th:value="${productDetail.id}" name="id">
+                      <button class="price-cart__btn btn--orange"  style="height: 1px; width: 400px; font-size: 15px;">
+                        <i class="ri-shopping-cart-2-line"></i>
+                        Add to cart
+                      </button>
+                    </div>
+                    </form>
+                  </section>
+                </div>
+
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+
+
+
+
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <!--
+    - TESTIMONIALS, CTA & SERVICE
+  -->
+
+  <div>
+
+    <div class="container">
+
+      <div class="testimonials-box">
+
+
+
+
+
+        <!--
+                 - TESTIMONIALS
+               -->
+
+        <div class="testimonial">
+
+          <h2 class="title">testimonial</h2>
+
+          <div class="testimonial-card">
+
+            <img th:src="@{/images/logo/Fashion_SHOP-removebg-preview.png}" alt="alan doe" class="testimonial-banner" width="100" height="100">
+
+            <p class="testimonial-name">FASHOP</p>
+
+            <p class="testimonial-title">Fashion & clothing Company</p>
+
+            <p>------------------</p>
+
+            <p class="testimonial-desc">
+              Offers a wide selection of stylish and trendy clothing items that can be easily purchased online and delivered straight to your doorstep.
+            </p>
+
+          </div>
+
+        </div>
+
+
+
+        <!--
+          - CTA
+        -->
+
+        <div class="cta-container">
+
+          <img th:src="@{/images/cta-banner.jpg}" alt="summer collection" class="cta-banner">
+
+          <a href="#" class="cta-content">
+
+            <p class="discount">25% Discount</p>
+
+            <h2 class="cta-title">Summer collection</h2>
+
+            <p class="cta-text">Starting @ @10</p>
+
+            <button class="cta-btn">Shop now</button>
+
+          </a>
+
+        </div>
+
+
+
+        <!--
+          - SERVICE
+        -->
+
+        <div class="service">
+
+          <h2 class="title">Our Services</h2>
+
+          <div class="service-container">
+
+
+            <a href="#" class="service-item">
+
+              <div class="service-icon">
+                <ion-icon name="rocket-outline"></ion-icon>
+              </div>
+
+              <div class="service-content">
+
+                <h3 class="service-title">Next Day delivery</h3>
+                <p class="service-desc">MOROCCO Orders Only</p>
+
+              </div>
+
+            </a>
+
+            <a href="#" class="service-item">
+
+              <div class="service-icon">
+                <ion-icon name="call-outline"></ion-icon>
+              </div>
+
+              <div class="service-content">
+
+                <h3 class="service-title">Best Online Support</h3>
+                <p class="service-desc">Hours: 8AM - 11PM</p>
+
+              </div>
+
+            </a>
+
+            <a href="#" class="service-item">
+
+              <div class="service-icon">
+                <ion-icon name="arrow-undo-outline"></ion-icon>
+              </div>
+
+              <div class="service-content">
+
+                <h3 class="service-title">Return Policy</h3>
+                <p class="service-desc">Easy & Free Return</p>
+
+              </div>
+
+            </a>
+
+            <a href="#" class="service-item">
+
+              <div class="service-icon">
+                <ion-icon name="ticket-outline"></ion-icon>
+              </div>
+
+              <div class="service-content">
+
+                <h3 class="service-title">30% money back</h3>
+                <p class="service-desc">For Order Over @100</p>
+
+              </div>
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <!--
+    - BLOG
+  -->
+
+  <div class="blog">
+
+    <div class="container">
+
+      <div class="blog-container has-scrollbar">
+
+        <div class="blog-card">
+
+          <a href="#">
+            <img th:src="@{/images/blog-1.jpg}" width="300" class="blog-banner">
+          </a>
+
+          <div class="blog-content">
+
+            <a href="#" class="blog-category">Fashion</a>
+
+            <a href="#">
+              <h3 class="blog-title">Clothes Retail KPIs 2021 Guide for Clothes Executives.</h3>
+            </a>
+
+            <p class="blog-meta">
+              By <cite>Mr Admin</cite> / <time datetime="2022-04-06">Apr 06, 2022</time>
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="blog-card">
+
+          <a href="#">
+            <img th:src="@{/images/blog-2.jpg}"
+                 class="blog-banner" width="300">
+          </a>
+
+          <div class="blog-content">
+
+            <a href="#" class="blog-category">Clothes</a>
+
+            <h3>
+              <a href="#" class="blog-title">Curbside fashion Trends: How to Win the Pickup Battle.</a>
+            </h3>
+
+            <p class="blog-meta">
+              By <cite>Mr Robin</cite> / <time datetime="2022-01-18">Jan 18, 2022</time>
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="blog-card">
+
+          <a href="#">
+            <img th:src="@{/images/blog-3.jpg}"
+                 class="blog-banner" width="300">
+          </a>
+
+          <div class="blog-content">
+
+            <a href="#" class="blog-category">Shoes</a>
+
+            <h3>
+              <a href="#" class="blog-title">EBT vendors: Claim Your Share of SNAP Online Revenue.</a>
+            </h3>
+
+            <p class="blog-meta">
+              By <cite>Mr Selsa</cite> / <time datetime="2022-02-10">Feb 10, 2022</time>
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="blog-card">
+
+          <a href="#">
+            <img th:src="@{/images/blog-4.jpg}"
+                 class="blog-banner" width="300">
+          </a>
+          <div class="blog-content">
+
+            <a href="#" class="blog-category">Dresses</a>
+
+            <h3>
+              <a href="#" class="blog-title">Curbside fashion Trends: How to Win the Pickup Battle.</a>
+            </h3>
+
+            <p class="blog-meta">
+              By <cite>Mr Pawar</cite> / <time datetime="2022-03-15">Mar 15, 2022</time>
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+
+
+
+<!--
+  - FOOTER
+-->
+
+<footer>
+
+  <div class="footer-category">
+
+    <div class="container">
+
+      <h2 class="footer-category-title">Brand directory</h2>
+
+      <div class="footer-category-box">
+
+        <h3 class="category-box-title">Fashion :</h3>
+
+        <a href="#" class="footer-category-link">T-shirt</a>
+        <a href="#" class="footer-category-link">Shirts</a>
+        <a href="#" class="footer-category-link">shorts & jeans</a>
+        <a href="#" class="footer-category-link">jacket</a>
+        <a href="#" class="footer-category-link">dress & frock</a>
+        <a href="#" class="footer-category-link">innerwear</a>
+        <a href="#" class="footer-category-link">hosiery</a>
+
+      </div>
+
+      <div class="footer-category-box">
+        <h3 class="category-box-title">footwear :</h3>
+
+        <a href="#" class="footer-category-link">sport</a>
+        <a href="#" class="footer-category-link">formal</a>
+        <a href="#" class="footer-category-link">Boots</a>
+        <a href="#" class="footer-category-link">casual</a>
+        <a href="#" class="footer-category-link">cowboy shoes</a>
+        <a href="#" class="footer-category-link">safety shoes</a>
+        <a href="#" class="footer-category-link">Party wear shoes</a>
+        <a href="#" class="footer-category-link">Branded</a>
+        <a href="#" class="footer-category-link">Firstcopy</a>
+        <a href="#" class="footer-category-link">Long shoes</a>
+      </div>
+
+      <div class="footer-category-box">
+        <h3 class="category-box-title">jewellery :</h3>
+
+        <a href="#" class="footer-category-link">Necklace</a>
+        <a href="#" class="footer-category-link">Earrings</a>
+        <a href="#" class="footer-category-link">Couple rings</a>
+        <a href="#" class="footer-category-link">Pendants</a>
+        <a href="#" class="footer-category-link">Crystal</a>
+        <a href="#" class="footer-category-link">Bangles</a>
+        <a href="#" class="footer-category-link">bracelets</a>
+        <a href="#" class="footer-category-link">nosepin</a>
+        <a href="#" class="footer-category-link">chain</a>
+        <a href="#" class="footer-category-link">Earrings</a>
+        <a href="#" class="footer-category-link">Couple rings</a>
+      </div>
+
+      <div class="footer-category-box">
+        <h3 class="category-box-title">cosmetics :</h3>
+
+        <a href="#" class="footer-category-link">Shampoo</a>
+        <a href="#" class="footer-category-link">Bodywash</a>
+        <a href="#" class="footer-category-link">Facewash</a>
+        <a href="#" class="footer-category-link">makeup kit</a>
+        <a href="#" class="footer-category-link">liner</a>
+        <a href="#" class="footer-category-link">lipstick</a>
+        <a href="#" class="footer-category-link">prefume</a>
+        <a href="#" class="footer-category-link">Body soap</a>
+        <a href="#" class="footer-category-link">scrub</a>
+        <a href="#" class="footer-category-link">hair gel</a>
+        <a href="#" class="footer-category-link">hair colors</a>
+        <a href="#" class="footer-category-link">hair dye</a>
+        <a href="#" class="footer-category-link">sunscreen</a>
+        <a href="#" class="footer-category-link">skin loson</a>
+        <a href="#" class="footer-category-link">liner</a>
+        <a href="#" class="footer-category-link">lipstick</a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer-nav">
+
+    <div class="container">
+
+      <ul class="footer-nav-list">
+
+        <li class="footer-nav-item">
+          <h2 class="nav-title">Popular Categories</h2>
+        </li>
+
+        <li class="footer-nav-item">
+          <a href="#" class="footer-nav-link">Dresses</a>
+        </li>
+
+        <li class="footer-nav-item">
+          <a href="#" class="footer-nav-link">Sheos</a>
+        </li>
+
+        <li class="footer-nav-item">
+          <a href="#" class="footer-nav-link">Sportswear</a>
+        </li>
+
+        <li class="footer-nav-item">
+          <a href="#" class="footer-nav-link">Jeans</a>
+        </li>
+
+      </ul>
+
+      <ul class="footer-nav-list">
+
+        <li class="footer-nav-item">
+          <h2 class="nav-title">Products</h2>
+        </li>
+
+        <li class="footer-nav-item">
+          <a href="#" class="footer-nav-link">Prices drop</a>
+        </li>
+
+        <li class="footer-nav-item">
+          <a href="#" class="footer-nav-link">New products</a>
+        </li>
+
+        <li class="footer-nav-item">
+          <a href="#" class="footer-nav-link">Best sales</a>
+        </li>
+
+        <li class="footer-nav-item">
+          <a href="#" class="footer-nav-link">Contact us</a>
+        </li>
+
+        <li class="footer-nav-item">
+          <a href="#" class="footer-nav-link">Sitemap</a>
+        </li>
+
+      </ul>
+
+      <ul class="footer-nav-list">
+
+        <li class="footer-nav-item">
+          <h2 class="nav-title">Our Company</h2>
+        </li>
+
+        <li class="footer-nav-item">
+          <a href="#" class="footer-nav-link">Delivery</a>
+        </li>
+
+        <li class="footer-nav-item">
+          <a href="#" class="footer-nav-link">Legal Notice</a>
+        </li>
+
+        <li class="footer-nav-item">
+          <a href="#" class="footer-nav-link">Terms and conditions</a>
+        </li>
+
+        <li class="footer-nav-item">
+          <a href="#" class="footer-nav-link">About us</a>
+        </li>
+
+        <li class="footer-nav-item">
+          <a href="#" class="footer-nav-link">Secure payment</a>
+        </li>
+
+      </ul>
+
+      <ul class="footer-nav-list">
+
+        <li class="footer-nav-item">
+          <h2 class="nav-title">Services</h2>
+        </li>
+
+        <li class="footer-nav-item">
+          <a href="#" class="footer-nav-link">Prices drop</a>
+        </li>
+
+        <li class="footer-nav-item">
+          <a href="#" class="footer-nav-link">New products</a>
+        </li>
+
+        <li class="footer-nav-item">
+          <a href="#" class="footer-nav-link">Best sales</a>
+        </li>
+
+        <li class="footer-nav-item">
+          <a href="#" class="footer-nav-link">Contact us</a>
+        </li>
+
+        <li class="footer-nav-item">
+          <a href="#" class="footer-nav-link">Sitemap</a>
+        </li>
+
+      </ul>
+
+      <ul class="footer-nav-list">
+
+        <li class="footer-nav-item">
+          <h2 class="nav-title">Contact</h2>
+        </li>
+
+        <li class="footer-nav-item flex">
+          <div class="icon-box">
+            <ion-icon name="location-outline"></ion-icon>
+          </div>
+
+          <address class="content">
+            419 el-madina, tetouan, 92000, MOROCCO
+          </address>
+        </li>
+
+        <li class="footer-nav-item flex">
+          <div class="icon-box">
+            <ion-icon name="call-outline"></ion-icon>
+          </div>
+
+          <a th:href="@{tel:+607936-8058}" class="footer-nav-link">+2126 66 00 11 55</a>
+        </li>
+
+        <li class="footer-nav-item flex">
+          <div class="icon-box">
+            <ion-icon name="mail-outline"></ion-icon>
+          </div>
+
+          <a th:href="@{mailto:example@gmail.com}" class="footer-nav-link">Fashop@gmail.com</a>
+        </li>
+
+      </ul>
+
+      <ul class="footer-nav-list">
+
+        <li class="footer-nav-item">
+          <h2 class="nav-title">Follow Us</h2>
+        </li>
+
+        <li>
+          <ul class="social-link">
+
+            <li class="footer-nav-item">
+              <a href="#" class="footer-nav-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+
+            <li class="footer-nav-item">
+              <a href="#" class="footer-nav-link">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </a>
+            </li>
+
+            <li class="footer-nav-item">
+              <a href="#" class="footer-nav-link">
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+            </li>
+
+            <li class="footer-nav-item">
+              <a href="#" class="footer-nav-link">
+                <ion-icon name="logo-instagram"></ion-icon>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+
+    <div class="container">
+
+      <img th:src="@{/images/payment.png}" alt="payment method" class="payment-img">
+
+      <p class="copyright">
+        Copyright &copy; <a href="#">Fashop</a> all rights reserved.
+      </p>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+  - custom js link
+-->
+<script th:src="@{/js/script.js}"></script>
+
+<!--
+  - ionicon link
+-->
+<script type="module" th:src="@{https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js}"></script>
+<script nomodule th:src="@{https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap.js}"></script>
+
+</body>
+<script>
+
+const imgBtn = Array.from(document.querySelectorAll(".img-btn"));
+const img = document.querySelector(".img-main");
+const mainImgBtns = Array.from(document.querySelectorAll(".img-main__btn"));
+
+const overlayCon = document.querySelector(".overlay-container");
+const overlayImg = document.querySelector(".item-overlay__img");
+const overlayImgBtn = Array.from(
+  document.querySelectorAll(".overlay-img__btn")
+);
+const overlayBtnImgs = Array.from(
+  document.querySelectorAll(".overlay-img__btn-img")
+);
+const overlayCloseBtn = document.querySelector(".item-overlay__btn ");
+const overlayBtns = Array.from(document.querySelectorAll(".overlay-btn"));
+
+const cartBtn = document.querySelector(".head-rgt__btn");
+const cart = document.querySelector(".head-cart");
+const cartItem = document.querySelector(".head-cart__item");
+const emptyCartTxt = document.querySelector(".head-cart__txt");
+const addToCart = document.querySelector(".price-cart__btn");
+const clearCart = document.querySelector(".head-cart__item-btn");
+const priceSingle = document.querySelector(".head-cart__price-single");
+const priceTotal = document.querySelector(".head-cart__price-total");
+
+const priceBtns = Array.from(document.querySelectorAll(".price-btn__img"));
+const totalItems = document.querySelector(".price-btn__txt");
+
+const menuOpen = document.querySelector(".head-lft__btn");
+const menu = document.querySelector(".head-nav");
+const menuBtnImg = document.querySelector(".head-lft__btn-img");
+
+const bodyOverlay = document.querySelector(".body-wrapper");
+const body = document.querySelector("body");
+
+const headerCart = document.querySelector(".head-rgt");
+
+/* Eventlisteners related to cart and items adding */
+let nextImg = 0,
+  noOfItems = 0,
+  clicked,
+  trasitionTimer;
+
+const minQuery = window.matchMedia("(min-width: 850px)"),
+  maxQuery = window.matchMedia("(max-width: 850px)");
+
+/*//////////////////////
+ Functions
+ /////////////////////*/
+/*Function to stop transition animation from triggering when page resize and reloading  */
+function transitionDelay() {
+  body.classList.add("preload");
+  clearTimeout(trasitionTimer);
+  trasitionTimer = setTimeout(() => {
+    body.classList.remove("preload");
+  }, 1000);
+}
+
+/* Function to get next and previous images*/
+function imgBtns(btns, img, imgName) {
+  btns.forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      if (e.target.classList.contains(`${imgName}__btnlft-img`)) {
+        if (nextImg <= 0) nextImg = 3;
+        else nextImg--;
+
+        img.src = `images/image-product-${nextImg + 1}.jpg`;
+      }
+
+      if (e.target.classList.contains(`${imgName}__btnrgt-img`)) {
+        if (nextImg >= 3) nextImg = 0;
+        else nextImg++;
+
+        img.src = `images/image-product-${nextImg + 1}.jpg`;
+      }
+    });
+  });
+}
+
+imgBtns(overlayBtns, overlayImg, "item-overlay");
+imgBtns(mainImgBtns, img, "img-main");
+
+/* Function to show single and total items price in the cart  */
+function productPrice(items) {
+  totalItems.textContent = items;
+  priceSingle.textContent = `$125 * ${items}`;
+  priceTotal.textContent = `$${125 * items}`;
+  if (items >= 1) {
+    headerCart.setAttribute("data-content", `${items}`);
+    headerCart.style.setProperty("--display", `block`);
+  } else {
+    headerCart.style.setProperty("--display", `none`);
+  }
+}
+
+/* Function to close navigation menu */
+function closeMenu() {
+  menu.classList.remove("open-menu");
+  body.style.overflow = "visible";
+  bodyOverlay.classList.remove("open-overlay");
+  menuBtnImg.src = "images/icon-menu.svg";
+}
+
+/* Function to open navigation menu */
+
+function openMenu() {
+  menu.classList.add(".open-menu");
+  menuBtnImg.src = "images/icon-close.svg";
+  body.style.overflow = "hidden";
+  cart.classList.remove("open-cart");
+  bodyOverlay.classList.add("open-overlay");
+}
+
+/* Function to delete cart item when cart items are zero */
+
+function cartIt() {
+  cartItem.classList.add("open-cart");
+  emptyCartTxt.classList.remove("open-cart");
+}
+
+/* Function to delete cart text 'empty cart' when cart items are > 0 */
+
+function cartTx() {
+  cartItem.classList.remove("open-cart");
+  emptyCartTxt.classList.add("open-cart");
+}
+
+/* Function to delete cart text cart item  */
+function emptyCart() {
+  cartItem.classList.remove("open-cart");
+  emptyCartTxt.classList.remove("open-cart");
+}
+
+/*//////////////////////
+ Event Listeners
+ /////////////////////*/
+
+/*  Eventlistener to close and open cart   */
+
+cartBtn.addEventListener("click", function () {
+  cart.classList.toggle("open-cart");
+  if (cart.classList.contains("open-cart")) {
+    if (noOfItems >= 1 && clicked === true) cartIt();
+    else cartTx();
+  } else {
+    emptyCart();
+  }
+});
+
+/*  Eventlistener to increase and decrease no. of items   */
+priceBtns.forEach((btn) => {
+  btn.addEventListener("click", function (e) {
+    clicked = false;
+    if (e.target.classList.contains("price-btn__add-img")) {
+      if (noOfItems >= 10) return;
+      noOfItems++;
+      productPrice(noOfItems);
+    } else if (e.target.classList.contains("price-btn__remove-img")) {
+      if (noOfItems <= 0) return;
+      noOfItems--;
+      productPrice(noOfItems);
+    }
+  });
+});
+
+/*  Eventlistener for add to cart button  */
+addToCart.addEventListener("click", function (e) {
+  clicked = true;
+  if (cart.classList.contains("open-cart")) {
+    if (noOfItems >= 1) {
+      cartIt();
+    } else if (noOfItems <= 0) {
+      cartTx();
+    }
+  }
+});
+
+/*  Eventlistener for delete cart item button   */
+clearCart.addEventListener("click", function () {
+  cartTx();
+  noOfItems = 0;
+  totalItems.textContent = noOfItems;
+  headerCart.style.setProperty("--display", `none`);
+});
+
+/*  Eventlistener to open overlay image modal   */
+img.addEventListener("click", function () {
+  if (minQuery.matches) {
+    overlayCon.style.display = "block";
+    overlayImg.src = img.src;
+  }
+});
+
+/*  Eventlistener to close overlay image modal   */
+overlayCloseBtn.addEventListener("click", function () {
+  if (minQuery.matches) {
+    overlayCon.style.display = "none";
+  }
+});
+
+/*  Eventlistener for overlay image modal btn to change overlay image same as button image  */
+overlayImgBtn.forEach((btn, i) => {
+  btn.addEventListener("click", function (e) {
+    overlayImg.src = `images/image-product-${i + 1}.jpg`;
+    nextImg = e.target.dataset.img;
+  });
+});
+
+/*  Eventlistener for  image to change when image button is clicked  */
+imgBtn.forEach((btn, i) => {
+  btn.addEventListener("click", function () {
+    img.src = `images/image-product-${i + 1}.jpg`;
+  });
+});
+
+/* Menu eventlisteners */
+/*  Eventlistener to open menu / navigation  */
+menuOpen.addEventListener("click", function () {
+  menu.classList.toggle("open-menu");
+  if (menu.classList.contains("open-menu")) {
+    openMenu();
+    emptyCart();
+  } else {
+    closeMenu();
+  }
+});
+
+/*  Eventlistener to stop transition animation from triggering when page resize */
+window.addEventListener("resize", function () {
+  transitionDelay();
+
+  if (maxQuery.matches) overlayCon.style.display = "none";
+
+  if (minQuery.matches) closeMenu();
+});
+
+/*  Eventlistener to stop transition animation from triggering when page reloading  */
+window.addEventListener("load", function () {
+  transitionDelay();
+});
+
+</script>
+
+</html>
